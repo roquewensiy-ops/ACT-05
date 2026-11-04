@@ -1,0 +1,237 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --bar: rgba(255, 255, 255, 0.35);
+  --overlay: rgba(0, 0, 0, 0.62);
+  --font-script: "Caveat Brush", "Comic Sans MS", cursive;
+  --font-body: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+/* ---------- Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  background:
+    linear-gradient(var(--overlay), var(--overlay)),
+    url("assets/hero-bg.jpg") center / cover no-repeat;
+  overflow-x: hidden;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--white);
+  outline-offset: 3px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ---------- Navigation (Flexbox) ---------- */
+.site-header {
+  background: var(--bar);
+  backdrop-filter: blur(6px);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.5rem 2rem;
+}
+
+.logo img {
+  width: 150px;
+  height: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  font-size: 0.95rem;
+}
+
+.nav-links a:hover,
+.signin:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--black);
+  font-weight: 600;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn:hover {
+  background: #f1e3d6;
+  transform: translateY(-2px);
+}
+
+.btn-small {
+  padding: 0.7rem 2rem;
+}
+
+/* ---------- Hero (CSS Grid) ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1280px;
+  min-height: calc(100vh - 90px);
+  margin: 0 auto;
+  padding: 3rem 0 3rem 2rem;
+}
+
+.hero-content h1 {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  line-height: 1.1;
+}
+
+.hero-text {
+  max-width: 34rem;
+  margin: 0 0 2rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Dish photo in a circle with a dashed ring, cropped by the screen edge */
+.hero-visual {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dish-ring {
+  position: relative;
+  width: min(100%, 520px);
+  aspect-ratio: 1;
+  margin-right: -90px;
+  border-radius: 50%;
+}
+
+.dish-ring::before {
+  content: "";
+  position: absolute;
+  inset: -22px;
+  border: 2px dashed rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+}
+
+.dish-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+  .nav-links {
+    gap: 1.25rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 860px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.5rem;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    gap: 3rem;
+    padding: 2.5rem 1.5rem 4rem;
+    text-align: center;
+  }
+
+  .hero-text {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    justify-content: center;
+  }
+
+  .dish-ring {
+    width: min(80%, 360px);
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    width: 120px;
+  }
+
+  .nav-actions {
+    gap: 1rem;
+  }
+
+  .btn-small {
+    padding: 0.55rem 1.4rem;
+  }
+}
